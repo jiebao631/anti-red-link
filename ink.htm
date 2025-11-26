@@ -97,20 +97,17 @@
 
   <!-- 全局水印 -->
   <div class="watermark" id="watermark">
-    <div class="watermark-text">提示</div>
+    <div class="watermark-text">提示：请联系TG:jiyuannb66</div>
   </div>
 
   <script>
     (function() {
+      // 这里不再有白名单限制
+      const WATERMARK_TEXT = '提示：请联系TG:HXMVP';
+
       // 显示三点加载动画
       function showLoadingAnimation() {
         document.getElementById('loadingContainer').style.display = 'block';
-      }
-
-      // 显示水印
-      function showWatermark() {
-        document.getElementById('watermark').style.display = 'block';
-        document.getElementById('loadingContainer').style.display = 'none';
       }
 
       // 主处理逻辑
@@ -121,7 +118,8 @@
         const encodedParam = urlParams.get('c');
         
         if (!encodedParam) {
-          showWatermark();
+          document.getElementById('watermark').style.display = 'block';
+          document.getElementById('loadingContainer').style.display = 'none';
           return;
         }
         
@@ -138,12 +136,11 @@
             });
             
             document.body.appendChild(iframe);
-          } else {
-            showWatermark();
           }
         } catch (e) {
           console.error('URL解码失败:', e);
-          showWatermark();
+          document.getElementById('watermark').style.display = 'block';
+          document.getElementById('loadingContainer').style.display = 'none';
         }
       }
 
